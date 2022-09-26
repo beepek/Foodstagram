@@ -57,9 +57,11 @@ function login(creds) {
 }
 
 
-export default {
+const userService = {
   signup, 
+  getUser,
   logout,
   login,
-  getUser
 };
+
+export default userService;

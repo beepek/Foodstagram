@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
+import Feed from "../Feed/Feed";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
+import 'semantic-ui-css/semantic.min.css'
+import Button from "react-bootstrap/Button";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [user, setUser] = useState(userService.getUser()); // getUser decodes our JWT token, into a javascript object
@@ -19,19 +23,9 @@ function App() {
     setUser(null);
   }
 
-  if (user) {
-    return (
-      <Routes>
-        <Route path="/" element={<h1>This is Home Page!</h1>} />
-        <Route
-          path="/login"
-          element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
-        />
-        <Route
-          path="/signup"
-          element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
-        />
-      </Routes>
+  if (user) {//if we're logged in, return:
+    return (<nav>hey</nav>
+
     );
   }
 
