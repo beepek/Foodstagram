@@ -1,31 +1,47 @@
 import React, { useState } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
-import Feed from "../Feed/Feed";
+
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
+import ProfilePage from "../Profile/Profile";
+import FeedPage from "../Feed/Feed";
+
 import userService from "../../utils/userService";
-import 'semantic-ui-css/semantic.min.css'
-import Button from "react-bootstrap/Button";
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const [user, setUser] = useState(userService.getUser()); // getUser decodes our JWT token, into a javascript object
-  // this object corresponds to the jwt payload which is defined in the server signup or login function that looks like
-  // this  const token = createJWT(user); // where user was the document we created from mongo
+  const [user, setUser] = useState(userService.getUser()); 
 
   function handleSignUpOrLogin() {
-    setUser(userService.getUser()); // getting the user from localstorage decoding the jwt
+    setUser(userService.getUser()); 
   }
 
   function handleLogout() {
     userService.logout();
     setUser(null);
   }
-
-  if (user) {//if we're logged in, return:
-    return (<nav>hey</nav>
-
+  console.log(user,  'this is user')
+  if (user) {
+   
+    return (
+      <Routes>
+        <Route
+          path="/"
+          element={<FeedPage loggedUser={user} handleLogout={handleLogout} />}
+        />
+        <Route
+          path="/login"
+          element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+        />
+        <Route
+          path="/signup"
+          element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+        />
+        <Route
+          path="/:username"
+          element={<ProfilePage loggedUser={user} handleLogout={handleLogout} />}
+        />
+      </Routes>
     );
   }
 
