@@ -40,6 +40,14 @@ export default function ProfilePage({ loggedUser, handleLogout}) {
                 </>
         );
     }
+    if (loading) {
+        return (
+            <>
+            <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
+            <Loading />
+            </>
+        );
+    }
     return (
         <Grid>
             <Grid.Row>

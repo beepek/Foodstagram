@@ -6,13 +6,13 @@ import PostGallery from "../../components/PostGaller/PostGallery";
 import { Grid } from "semantic-ui-react";
 
 import * as postsAPI from '../../utils/postApi';
-import { castObject } from "../models/user";
+
 
 export default function Feed() {
     const [posts, setPosts] = useState([]);
     async function handleAddPost(post){
         try {
-            const response = await posts.API.create(post);
+            const response = await postsAPI.create(post);
             console.log(response)
         } catch(err){
             console.log(err.message)

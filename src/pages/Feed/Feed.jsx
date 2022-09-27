@@ -5,6 +5,7 @@ import PostGallery from "../../components/PostGallery/PostGallery";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Loading from "../../components/Loader/Loader";
 import { Grid } from "semantic-ui-react";
+
 import * as postsAPI from "../../utils/postApi";
 
 
@@ -41,9 +42,7 @@ async function handleAddPost(post) {
   }
 
   useEffect(() => {
-    //Getting posts, C(R)UD
-
-    getPosts();
+        getPosts();
   }, []); // This is useEffect runs once when the Feed component
   // loads
   if (error) {
@@ -54,6 +53,14 @@ async function handleAddPost(post) {
        
       </>
     );
+  }
+  if (loading){
+    return(
+        <>
+            <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
+            <Loading />
+        </>
+    )
   }
   return (
     <Grid centered>

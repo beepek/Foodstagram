@@ -8,9 +8,7 @@ export default function AddPostForm(props) {
     const [selectedFile, setSelectedFile] = useState("");
 
     function handleFileInput(e) {
-        setState({
-            caption: e.target.value,
-        });
+        setSelectedFile(e.target.files[0]);
     }
     function handleChange(e) {
         setState({
@@ -20,7 +18,7 @@ export default function AddPostForm(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        const formData = new formData();
+        const formData = new FormData();
         formData.append("photo", selectedFile);
         formData.append("caption", state.caption);
         props.handleAddPost(formData);
@@ -34,7 +32,7 @@ export default function AddPostForm(props) {
           className="form-control"
           name="caption"
           value={state.caption}
-          placeholder="What's on your pups mind?"
+          placeholder="Tell us about your recipie!"
           onChange={handleChange}
           required
         />
@@ -47,7 +45,7 @@ export default function AddPostForm(props) {
           />
         </Form.Field>
         <Button type="submit" className="btn">
-          ADD PUPPY
+          Add A Recipie or Meal!
         </Button>
       </Form>
     </Segment>
