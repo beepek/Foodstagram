@@ -4,12 +4,15 @@ const BASE_URL = "/api/posts";
 
 
 export function create(post) {
+   post.forEach(item => { console.log(item)})
+    
   return fetch(BASE_URL, {
-    method: "POST",
-    body: post,
+    method: 'POST',
     headers: {
-      Authorization: "Bearer " + tokenService.getToken(),
-    },
+    'Content-Type': 'application/json',
+ "Authorization": "Bearer " + tokenService.getToken(),
+},
+body: JSON.stringify(post)
   }).then((res) => {
     if (res.ok) return res.json(); 
     return res.json().then(response => {
