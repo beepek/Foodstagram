@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 import CommentExampleComment from "../Comment/Comment";
 
 
-function PostCard({ post, isProfile, loggedUser }) {
+function PostCard({ post, isProfile, addComment, removeComment, loggedUser }) {
+  
+
+
+
     return (
         <>
         <Card key={post._id} raised>

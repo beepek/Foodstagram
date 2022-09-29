@@ -14,7 +14,7 @@ const CommentExampleComment = () => (
         <Comment.Metadata>
           <div>Today at 5:42PM</div>
         </Comment.Metadata>
-        <Comment.Text>How artistic!</Comment.Text>
+        <Comment.Text>Looks Delicious!</Comment.Text>
         <Comment.Actions>
           <Comment.Action>Reply</Comment.Action>
         </Comment.Actions>
@@ -29,7 +29,7 @@ const CommentExampleComment = () => (
           <div>Yesterday at 12:30AM</div>
         </Comment.Metadata>
         <Comment.Text>
-          <p>This has been very useful for my research. Thanks as well!</p>
+          <p>Cant recommend this burger enough!</p>
         </Comment.Text>
         <Comment.Actions>
           <Comment.Action>Reply</Comment.Action>
