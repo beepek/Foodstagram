@@ -1,9 +1,12 @@
 import React from "react";
 import { Card, Image, } from "semantic-ui-react";//comment as well when we get there
 import { Link } from "react-router-dom";
+import CommentExampleComment from "../Comment/Comment";
 
-function PostCard({ post, isProfile, addLike, removeLike, loggedUser }) {
+
+function PostCard({ post, isProfile, loggedUser }) {
     return (
+        <>
         <Card key={post._id} raised>
           {isProfile ? (
             ""
@@ -31,6 +34,8 @@ function PostCard({ post, isProfile, addLike, removeLike, loggedUser }) {
             <Card.Description>{post.caption}</Card.Description>
           </Card.Content>          
         </Card>
+        <CommentExampleComment/>
+        </>
       );
     }
     
