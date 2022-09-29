@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Post = require("../models/post");
 const jwt = require('jsonwebtoken');
 const S3 = require("aws-sdk/clients/s3");
 const s3 = new S3(); // initate the S3 constructor which can talk to aws/s3 our bucket!
@@ -11,9 +12,27 @@ const SECRET = process.env.SECRET;
 
 
 module.exports = {
-  signup,
-  login
+  signup: signup, 
+  login,
+  profile,
 };
+
+async function profile(req, res) {
+  try{
+    const user = await User.findOne({username: req.params.username});
+    if (!user) return res.status(404).json({error: "User not found"});
+    const posts = await Post.find({ user: user._id }).populate("user").exec();
+    res.status(200).json({
+      data: {
+        user: user,
+        posts: posts,
+      }
+    });
+  } catch (err) {
+    console.log(err.message, "error in profile controller");
+    res.status(400).json({error: "Something went wrong"});
+  }
+}
 
 async function signup(req, res) {
   console.log(req.body, " req.body in signup", req.file);
