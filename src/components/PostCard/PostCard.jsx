@@ -9,7 +9,7 @@ import { deletePost } from "../../utils/postApi";
 function PostCard({ post, isProfile, addComment, removeComment, loggedUser }) {
   
   const deleteClickHandler = () => {
-    deletePost(post._id);
+    deletePost(post._id);()
     
   };
   
