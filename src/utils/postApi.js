@@ -20,8 +20,24 @@ export function create(post) {// DONT STRINGIFY, THIS IS A PHOTO POST! (formdata
   }
 
 
-export function getAll() {
-  return fetch(BASE_URL, {
+  export function getAll() {
+    return fetch(BASE_URL, {
+        headers: {
+            'Authorization': 'Bearer ' + tokenService.getToken()
+        }
+    })
+        .then((res) => {
+            if (res.ok) return res.json();
+
+            return res.json().then(response => {
+                console.log(response)
+                throw new Error(response.err)
+            })
+        });
+}
+
+export function deletePost(postId) {
+  return fetch(BASE_URL + "/" + postId, {
   
     headers: {
       'Authorization': 'Bearer ' + tokenService.getToken() 

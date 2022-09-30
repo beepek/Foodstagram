@@ -8,7 +8,16 @@ const BUCKET_NAME = process.env.AWS_BUCKET_NAME;
 module.exports = {
     create,
     index,
+    deletePost
 };
+async function deletePost(req, res){
+  try{
+  post.findByIdAndDelete(req.params.id, function () {
+    res.status(201).json({})
+  })
+}catch(err){
+  res.staus(400).json({err})
+}}
 function create(req, res) {
     console.log(req.body, req.file, req.user); // < req.user comes the config/auth middleware that is mounted before our controllers in the server.js
     const key = `collectionbucketbeepek/posts/${uuidv4()}-${req.file.originalname}`;
@@ -41,7 +50,7 @@ function create(req, res) {
       // when you fetch teh posts
       console.log("in the index functrion", req)
       const posts = await Post.find({}).populate("user").exec();
-      console.log(post)
+      console.log(posts)
       res.status(200).json({ data: posts });
     } catch (err) {
       res.status(400).json({ err });
