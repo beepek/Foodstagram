@@ -11,10 +11,11 @@ module.exports = {
     deletePost
 };
 async function deletePost(req, res){
+  console.log("delete post hit")
   try{
-  post.findByIdAndDelete(req.params.id, function () {
+  await Post.findByIdAndDelete(req.params.id) 
     res.status(201).json({})
-  })
+  
 }catch(err){
   res.staus(400).json({err})
 }}

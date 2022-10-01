@@ -15,6 +15,7 @@ export default function Feed({loggedUser, handleLogout}) {
     const [error, setError] = useState("");
 
 async function deletePost(postId) {
+  console.log("deletepost hit");
   try {
     const response = await postsAPI.deletePost(postId);
     console.log(response, " remove post");
