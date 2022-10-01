@@ -4,12 +4,21 @@ import { Link } from "react-router-dom";
 import CommentExampleComment from "../Comment/Comment";
 import { deletePost } from "../../utils/postApi";
 
+import * as postAPI from "../../utils/postApi";
 
 
-function PostCard({ post, isProfile, addComment, removeComment, loggedUser }) {
+function PostCard({ post, isProfile, addComment, removeComment, loggedUser, setPosts }) {
   
-  const deleteClickHandler = () => {
+  async function deleteClickHandler () {
     deletePost(post._id);
+    try{
+      const response = await postAPI.getAll()
+      console.log(response, "response")
+      setPosts([...response.data])
+    }catch(err){
+      console.log("error")
+    }
+    
     
   };
   

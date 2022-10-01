@@ -95,6 +95,7 @@ async function handleAddPost(post) {
             isProfile={false}
             loggedUser={loggedUser}
             deletePost={deletePost}
+            setPosts={setPosts}
 
           />
         </Grid.Column>
