@@ -52,13 +52,14 @@ function PostCard({ post, isProfile, addComment, removeComment, loggedUser, setP
           <Image src={`${post?.photoUrl}`} wrapped ui={false} />
           <Card.Content>
             <Card.Description>{post.caption}</Card.Description>
+            <Link to ={`#`}>
             <Icon
                 name={"delete"}
                 size="large"
                 color={"red"}
                 onClick={deleteClickHandler}
               />
-
+            </Link>
           </Card.Content>          
         </Card>
         <CommentExampleComment/>
