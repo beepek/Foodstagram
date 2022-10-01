@@ -14,6 +14,18 @@ export default function Feed({loggedUser, handleLogout}) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
+async function deletePost(postId) {
+  try {
+    const response = await postsAPI.deletePost(postId);
+    console.log(response, " remove post");
+    getPosts();
+    
+  } catch (err) {
+    console.log(err);
+    setError("error removing post");
+  }
+}    
+
 async function handleAddPost(post) {
     try {
     
@@ -81,6 +93,8 @@ async function handleAddPost(post) {
             numPhotosCol={1}
             isProfile={false}
             loggedUser={loggedUser}
+            deletePost={deletePost}
+
           />
         </Grid.Column>
       </Grid.Row>
